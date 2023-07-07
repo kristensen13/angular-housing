@@ -1,0 +1,41 @@
+<article>
+  <img class="listing-photo" [src]="housingLocation?.photo"
+    alt="Exterior photo of {{housingLocation?.name}}"/>
+  <section class="listing-description">
+    <h2 class="listing-heading">{{housingLocation?.name}}</h2>
+    <p class="listing-location">{{housingLocation?.city}}, {{housingLocation?.state}}</p>
+  </section>
+  <section class="listing-features">
+    <h2 class="section-heading">Sobre la ubicación de esta vivienda</h2>
+    <ul>
+      <li>Unidades disponibles: {{housingLocation?.availableUnits}}</li>
+      <li>¿Esta ubicación tiene wifi?: <span *ngIf="housingLocation?.wifi == true; else no">Si</span> </li>
+      <li><ng-template #no>No</ng-template> </li>
+      <li>¿Este lugar tiene lavandería? <span *ngIf="housingLocation?.laundry == true; else noo">Si</span></li>
+      <li><ng-template #noo>No</ng-template> </li>
+    </ul>
+  </section>
+  <section class="listing-apply">
+    <h2 class="section-heading">Aplicar ahora para vivir aquí</h2>
+    <form [formGroup]="applyForm" (submit)="submitApplication()">
+      <label for="first-name">Nombre</label>
+      <input id="first-name" type="text" formControlName="firstName">
+
+      <label for="last-name">Apellidos</label>
+      <input id="last-name" type="text" formControlName="lastName">
+
+      <label for="email">Email</label>
+      <input id="email" type="email" formControlName="email">
+      <button type="submit" class="primary">Aplicar ahora</button>
+    </form>
+    <!-- <form #applyForm="ngForm" (ngSubmit)="submitApplication()">
+      <input type="text" name="nombre" placeholder="Nombre de mascota" formControlName="firstName">
+      <br><br>
+      <input type="text" name="raza" placeholder="Raza de mascota" formControlName="lastName">
+      <br><br>
+      <input type="number" name="edad" placeholder="Edad de mascota" formControlName="email">
+      <br><br>
+      <button type="submit">Guardar</button>
+    </form> -->
+  </section>
+</article>
